@@ -1,20 +1,28 @@
 import { StyleSheet } from 'react-native';
 
-module.export = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#000',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  fullscreen: {
+    flex: 1,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  form: {
+    paddingLeft:10,
+    paddingRight:10,
   },
+  button: {
+    marginTop: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  primary: {
+    backgroundColor: '#2ecc71',
+  },
+  primaryText: {
+    color:'#2ecc71',
+  }
 });

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 
-import Home from './app/screens/Home/Home'
+import Login from './app/screens/Login/Login'
 
 export default class App extends Component {
   render() {
@@ -12,7 +12,7 @@ export default class App extends Component {
 }
 
 const AppNavigator = StackNavigator({
-  Home: {
-    screen: Home,
+  Login: {
+    screen: Login,
   },
 });

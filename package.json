@@ -10,6 +10,8 @@
     "native-base": "^2.7.1",
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-linear-gradient": "^2.4.0",
+    "react-native-zeroconf": "^0.9.0",
     "react-navigation": "^2.7.0"
   },
   "devDependencies": {
