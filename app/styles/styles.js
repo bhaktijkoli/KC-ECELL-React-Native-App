@@ -10,14 +10,14 @@ export default StyleSheet.create({
   fullscreen: {
     flex: 1,
   },
-  form: {
-    paddingLeft:10,
-    paddingRight:10,
+  input: {
+    marginLeft:10,
+    marginRight:10,
   },
   button: {
-    marginTop: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
+    marginTop:10,
+    marginLeft:10,
+    marginRight:10,
   },
   primary: {
     backgroundColor: '#2ecc71',

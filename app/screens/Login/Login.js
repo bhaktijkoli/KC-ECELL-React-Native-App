@@ -50,24 +50,27 @@ class Login extends Component {
   getForm() {
     return(
       <Content>
-        <Form style={Styles.form}>
-          <Item floatingLabel>
+        <Form>
+          <Item floatingLabel style={Styles.input}>
             <Label>Username</Label>
             <Input />
           </Item>
-          <Item floatingLabel last>
+          <Item floatingLabel style={Styles.input}>
             <Label>Password</Label>
             <Input />
           </Item>
           <Button block style={[Styles.button, Styles.primary]}>
             <Text style={Styles.primary}>Login</Text>
           </Button>
-          <Button transparent block style={Styles.button}>
+          <Button transparent block style={Styles.button} onPress={this.doRegister.bind(this)}>
             <Text style={Styles.primaryText}>Register</Text>
           </Button>
         </Form>
       </Content>
     )
+  }
+  doRegister() {
+    this.props.navigation.navigate("Register");
   }
 }
 

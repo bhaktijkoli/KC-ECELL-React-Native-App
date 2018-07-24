@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 
 import Login from './app/screens/Login/Login'
+import Register from './app/screens/Register/Register'
 
 export default class App extends Component {
   render() {
@@ -12,7 +13,6 @@ export default class App extends Component {
 }
 
 const AppNavigator = StackNavigator({
-  Login: {
-    screen: Login,
-  },
+  Login: { screen: Login, },
+  Register: { screen: Register, },
 });
