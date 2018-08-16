@@ -8,6 +8,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import Styles from './../../styles/styles';
 import Route from './../../utils/route';
 
+import ButtonText from './../../components/ButtonText';
+
 class Register extends Component {
   static navigationOptions = {
     title: "Register",
@@ -23,6 +25,7 @@ class Register extends Component {
       position: '',
       branch: '',
       mobile_number: '',
+      process: '',
     };
   }
   componentDidMount() {
@@ -61,7 +64,7 @@ class Register extends Component {
               <Input value={this.state.mobile_number} onChangeText={value=>this.setState({'mobile_number':value})}/>
             </Item>
             <Button block style={[Styles.button, Styles.primary]} onPress={this.handleRegister.bind(this)}>
-              <Text style={Styles.primary}>Register</Text>
+              <ButtonText value="Register" loading={this.state.process} color="#FFF"/>
             </Button>
           </Form>
         </Content>
@@ -69,6 +72,7 @@ class Register extends Component {
     )
   }
   handleRegister() {
+    this.setState({process:true});
     axios.post(Route('/api/users'), this.state).then(res=>{
       if(res.data.success) {
         Toast.show({text:"Registration successfull!", buttonText:"Ok"});
@@ -76,8 +80,9 @@ class Register extends Component {
       } else {
         Toast.show({text:res.data.msg, buttonText:"Ok"});
       }
+      this.setState({process:false});
     }).catch(res=>{
-      console.log(res);
+      this.setState({process:false});
     });
   }
 }
