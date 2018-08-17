@@ -7,6 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { connect } from "react-redux"
 
+import Auth from './../actions/authActions'
 import Styles from './../styles/styles';
 
 const listArray1 = [
@@ -62,7 +63,7 @@ class Sidebar extends Component {
             <ListItem
               button={true}
               noBorder={true}
-              onPress={() => this.doLogout()} >
+              onPress={this.doLogout.bind(this)} >
               <Row>
                 <Icon name="sign-out" style={{marginRight:10}}/>
                 <Text>Logout</Text>
@@ -74,8 +75,9 @@ class Sidebar extends Component {
     );
   }
   doLogout() {
-    console.log("Sidebar", this.props);
-    this.props.auth.topNavigation.navigate('Logout');
+    let data ={ token: "", user: ""}
+    Auth.saveAuth(data);
+    this.props.auth.topNavigation.navigate('Login');
   }
 }
 function mapStateToProps(state) {

@@ -28,9 +28,14 @@ class Login extends Component {
     }
   }
   componentDidMount() {
+    this.props.dispatch(Auth.setTopNavigation(this.props.navigation));
     Auth.getAuth().then(data=>{
-      this.setState({found:true});
-      this.doLogin(JSON.parse(data));
+      data = JSON.parse(data);
+      if(data.token.length > 10) {
+        this.doLogin(data);
+      } else {
+        this.setState({found:true});
+      }
     }).catch(res=>{
       this.setState({found:true});
     })
@@ -95,7 +100,6 @@ class Login extends Component {
       }
       this.setState({process:false});
     }).catch(res=>{
-      console.log(res);
       this.setState({process:false});
     });
   }
