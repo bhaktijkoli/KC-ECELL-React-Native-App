@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+const Styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -24,5 +24,12 @@ export default StyleSheet.create({
   },
   primaryText: {
     color:'#2ecc71',
-  }
+  },
+  white: {
+    color: '#FFF'
+  },
 });
+
+module.exports = Styles;
+
+module.exports.gradientColors = ['#89f7fe', '#66a6ff']

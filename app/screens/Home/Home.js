@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Button, Text } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Container, Header, Content, View, Button, Text, Icon } from 'native-base';
+import { connect } from "react-redux"
 
+import HeaderEx from './../../components/HeaderEx'
 import Styles from './../../styles/styles';
 
 class Home extends Component {
+  static navigationOptions = {
+    header:null,
+  }
   render() {
     return(
-      <Container style={Styles.container}>
-        <Content>
-          <Button>
-            <Text>Click Me! </Text>
-          </Button>
-        </Content>
+      <Container>
+        <HeaderEx navigation={this.props.navigation} title="Home"/>
       </Container>
     )
   }
 }
 
-export default Home;
+function mapStateToProps(state) {
+  return {
+  };
+}
+export default connect(mapStateToProps)(Home);

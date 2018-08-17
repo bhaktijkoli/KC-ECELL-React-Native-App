@@ -106,6 +106,7 @@ class Login extends Component {
     console.log(data);
     this.props.dispatch(Auth.setData(data));
     Auth.saveAuth(data);
+    this.props.navigation.navigate("Home");
   }
 }
 
