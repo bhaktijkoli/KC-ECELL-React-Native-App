@@ -21,18 +21,19 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      found: true,
+      found: false,
       process: false,
       email: 'bhk@g.com',
       password: '12345',
     }
   }
   componentDidMount() {
-
     Auth.getAuth().then(data=>{
-      this.doLogin(doLogin);
-    });
-
+      this.setState({found:true});
+      this.doLogin(JSON.parse(data));
+    }).catch(res=>{
+      this.setState({found:true});
+    })
     const zeroconf = new Zeroconf();
     zeroconf.scan(type = 'kcecell', protocol = 'tcp', domain = 'local.');
     zeroconf.on('start', () => console.log('The scan has started.'));
@@ -41,7 +42,6 @@ class Login extends Component {
       console.log("Found ", data);
       var ipaddress = data.addresses[0];
       var port = data.port;
-      this.setState({found:true});
     });
   }
   render() {
