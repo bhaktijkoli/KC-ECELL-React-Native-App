@@ -3,6 +3,7 @@ import { Image } from 'react-native';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
 
 import Home from './../Home/Home'
+import Members from './../Members/Members'
 
 import Sidebar from './../../components/Sidebar'
 
@@ -27,6 +28,7 @@ export default class Main extends Component {
 
 const HomeNavigator = StackNavigator({
   Home: {screen: Home},
+  Members: {screen: Members},
 },{navigationOptions: navigationOptions});
 
 const AppNavigator = DrawerNavigator(

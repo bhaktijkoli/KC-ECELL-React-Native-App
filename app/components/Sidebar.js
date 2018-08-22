@@ -12,6 +12,7 @@ import Styles from './../styles/styles';
 
 const listArray1 = [
   { label: 'Home',  icon: 'home', screen: 'Home' },
+  { label: 'Members',  icon: 'users', screen: 'Members' },
 ]
 const listArray2 = [
   { label: 'Settings',  icon: 'cog', screen: 'Home' },
@@ -51,7 +52,7 @@ class Sidebar extends Component {
               <ListItem
                 button={true}
                 noBorder={rowId!=listArray1.length-1}
-                onPress={() => this.props.navigation.navigate(item.screen)} >
+                onPress={() => this.props.navigation.navigate(item.screen)}>
                 <Row>
                   <Icon name={item.icon} style={{marginRight:10}}/>
                   <Text>{item.label}</Text>
