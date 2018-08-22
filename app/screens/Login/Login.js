@@ -5,10 +5,9 @@ import { Form, Item, Label, Input } from 'native-base';
 import { connect } from "react-redux"
 import LinearGradient from 'react-native-linear-gradient';
 import Zeroconf from 'react-native-zeroconf';
-import axios from 'axios';
 
 import Styles from './../../styles/styles';
-import Route from './../../utils/route';
+import Request from './../../utils/request';
 
 import ButtonText from './../../components/ButtonText';
 
@@ -29,10 +28,9 @@ class Login extends Component {
   }
   componentDidMount() {
     this.props.dispatch(Auth.setTopNavigation(this.props.navigation));
-    Auth.getAuth().then(data=>{
-      data = JSON.parse(data);
-      if(data.token.length > 10) {
-        this.doLogin(data);
+    Auth.getToken().then(token=>{
+      if(token.length > 10) {
+        this.doGetUserData(token);
       } else {
         this.setState({found:true});
       }
@@ -91,25 +89,37 @@ class Login extends Component {
   }
   handleLogin() {
     this.setState({process:true});
-    axios.post(Route('/api/users/login'), this.state).then(res=>{
+    Request.post('/api/user/login', this.state).then(res=>{
       if(res.data.success) {
-        let data = {token: res.data.token, user:res.data.user};
-        this.doLogin(data);
+        let token = res.data.token;
+        Auth.saveToken(token);
+        this.doGetUserData(token);
       } else {
         Toast.show({text:"Invalid email and password.", buttonText:"Ok"});
+        this.setState({process:false});
       }
-      this.setState({process:false});
     }).catch(res=>{
+      console.log(res.response);
       this.setState({process:false});
     });
   }
   doRegister() {
     this.props.navigation.navigate("Register");
   }
+  doGetUserData(token) {
+    Request.setToken(token);
+    Request.get('/api/user/').then(res=>{
+      let user = res.data.user;
+      let data = {token, user};
+      this.doLogin(data);
+    }).catch(res=>{
+      console.log(res.response);
+      this.setState({process:false});
+    })
+  }
   doLogin(data) {
     console.log(data);
     this.props.dispatch(Auth.setData(data));
-    Auth.saveAuth(data);
     this.props.navigation.navigate("Home");
   }
 }

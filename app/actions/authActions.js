@@ -6,9 +6,9 @@ module.exports.setData = (data) => {
 module.exports.setTopNavigation = (data) => {
   return {type: 'SET_TOPNAVIGATION', payload: data}
 }
-module.exports.saveAuth = (data) => {
-  AsyncStorage.setItem('authdata', JSON.stringify(data))
+module.exports.saveToken = (token) => {
+  AsyncStorage.setItem('authtoken', token)
 }
-module.exports.getAuth = () => {
-  return AsyncStorage.getItem('authdata');
+module.exports.getToken = () => {
+  return AsyncStorage.getItem('authtoken');
 }

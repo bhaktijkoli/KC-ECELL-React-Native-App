@@ -75,8 +75,7 @@ class Sidebar extends Component {
     );
   }
   doLogout() {
-    let data ={ token: "", user: ""}
-    Auth.saveAuth(data);
+    Auth.saveToken("");
     this.props.auth.topNavigation.navigate('Login');
   }
 }

@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Header, Content, Button, Spinner, Text, Toast } from 'native-base';
 import { Form, Item, Label, Input } from 'native-base';
-import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 
 import Styles from './../../styles/styles';
-import Route from './../../utils/route';
+import Request from './../../utils/request';
 
 import ButtonText from './../../components/ButtonText';
 
@@ -73,7 +72,7 @@ class Register extends Component {
   }
   handleRegister() {
     this.setState({process:true});
-    axios.post(Route('/api/users'), this.state).then(res=>{
+    Request.post('/api/user', this.state).then(res=>{
       if(res.data.success) {
         Toast.show({text:"Registration successfull!", buttonText:"Ok"});
         this.props.navigation.navigate("Login");
