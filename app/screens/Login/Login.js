@@ -28,23 +28,23 @@ class Login extends Component {
   }
   componentDidMount() {
     this.props.dispatch(Auth.setTopNavigation(this.props.navigation));
-    Auth.getToken().then(token=>{
-      if(token.length > 10) {
-        this.doGetUserData(token);
-      } else {
-        this.setState({found:true});
-      }
-    }).catch(res=>{
-      this.setState({found:true});
-    })
     const zeroconf = new Zeroconf();
-    zeroconf.scan(type = 'kcecell', protocol = 'tcp', domain = 'local.');
+    zeroconf.scan(type = 'http', protocol = 'tcp', domain = 'local.');
     zeroconf.on('start', () => console.log('The scan has started.'));
     zeroconf.on('stop', () => console.log('The scan has stopped.'));
     zeroconf.on('resolved', (data)=>{
       console.log("Found ", data);
-      var ipaddress = data.addresses[0];
-      var port = data.port;
+      global.host = data.addresses[0];
+      global.port = data.port;
+      Auth.getToken().then(token=>{
+        if(token.length > 10) {
+          this.doGetUserData(token);
+        } else {
+          this.setState({found:true});
+        }
+      }).catch(res=>{
+        this.setState({found:true});
+      })
     });
   }
   render() {
