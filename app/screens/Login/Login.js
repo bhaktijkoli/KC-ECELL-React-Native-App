@@ -109,16 +109,20 @@ class Login extends Component {
   doGetUserData(token) {
     Request.setToken(token);
     Request.get('/api/user/').then(res=>{
-      let user = res.data.user;
-      let data = {token, user};
-      this.doLogin(data);
+      console.log(res);
+      if(res.data.success == true) {
+        let user = res.data.user;
+        let data = {token, user};
+        this.doLogin(data);
+      } else {
+        this.setState({process:false, found:true});
+      }
     }).catch(res=>{
       console.log(res.response);
-      this.setState({process:false});
+      this.setState({process:false, found:true});
     })
   }
   doLogin(data) {
-    console.log(data);
     this.props.dispatch(Auth.setData(data));
     this.props.navigation.navigate("Home");
   }
